@@ -1,44 +1,96 @@
-import dummyData from '../data/dummy-data.js'
-import { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import "../data/dummy-data.js"
+import dummyData from '../data/dummy-data.js';
 
-export default function StudentProfile() {
+export const StudentProfile = () => {
+  const [student, setStudent] = useState({ name: '', grade: '', teachers:[], tags: [] });
+  const [strategies, setStrategies] = useState([]);
 
-    const student = {
-        Name: "John Doe",
-        studentTags: ["Reading Support", "Speech Therapy"],
-        notedWorkingStrategies: ["fidgets", "lots of breaks"],
-        allEducators: ["Paraprofessional", "Speech Therapist"],
-        uniqueScheduledSupports: ["speech therapy Tuesdays at 2pm", "resource room"]
-      };
 
-    
-      const [strategies, setStrategies] = useState(student.strategies);
-      const [newStrategy, setNewStrategy] = useState("");
-      const [tags, setTags] = useState("");
-      const [open, setOpen] = useState(false);
-    
-      const addStrategy = () => {
-        if (newStrategy.trim()) {
-          setStrategies([...strategies, { id: Date.now(), name: newStrategy, tags: tags.split(",") }]);
-          setNewStrategy("");
-          setTags("");
-          setOpen(false);
-        }
-      };
-    
-      const deleteStrategy = (id) => {
-        setStrategies(strategies.filter((s) => s.id !== id));
-      };
-    
-      return (
-        <div className="p-6 space-y-6">
-          <div className="flex items-center space-x-4">
-            <img src={student.photo} alt="Student" className="w-24 h-24 rounded-full" />
-            <div>
-              <h1 className="text-2xl font-bold">{student.name}</h1>
-              <p className="text-gray-500">ID: {student.id} | {student.grade}</p>
+  useEffect(() => {
+    // Fetch or define the students data here
+    const fetchStudent = async () => {
+      // Example data
+      const data = { name: "Sofa", grade: "First", teachers:["Nara Coldwater"], tags: ["tag1", "tag2"] }
+      setStudent(data);
+    };
+
+    fetchStudent();
+  }, []);
+
+  useEffect(() => {
+    // Fetch or define the students data here
+    const fetchStrategies = async () => {
+      // Example data
+      const data = [
+        { tag: "Attention", behavior: "Very active" },
+        { tag: "Reading", behavior: "Struggles identifying letters" },
+        { tag: "Attention2", behavior: "Very active" },
+        { tag: "Reading2", behavior: "Struggles identifying letters" },
+        { tag: "Attention3", behavior: "Very active" },
+        { tag: "Reading3", behavior: "Struggles identifying letters" },
+      ]
+      //dummyData.collections;
+      setStrategies(data);
+    };
+
+    fetchStrategies();
+  }, []);
+
+
+  return (
+
+    <div className="w-full">
+      {/* Navigation Bar */}
+      <div className="bg-gray-100 text-black p-10 flex justify-between items-center mb-8 w-full fixed top-0 left-0">
+        <div className="flex items-center space-x-6">
+          <div className="text-4xl font-bold border-r-2 pr-4">{student.name}</div>
+          <div className="text-xl">Grade: {student.grade}</div>
+          <div className="text-xl flex items-center">
+            <span>Needs: </span>
+            <div className="flex space-x-2 ml-2">
+              {student.tags.map((tag, index) => (
+                <span key={index} className="bg-gray-200 px-2 py-1 rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <span className="ml-4">Teachers: </span>
+            <div className="flex space-x-2 ml-2">
+              {student.teachers.map((teacher, index) => (
+                <span key={index} className="bg-gray-200 px-2 py-1 rounded">
+                  {teacher}
+                </span>
+              ))}
             </div>
           </div>
         </div>
-      );
-}
+        <div>
+          <button className="text-white mr-4 px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Profile</button>
+          <button className="text-white px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Settings</button>
+        </div>
+      </div>
+      <div className="max-w-4xl mx-auto p-6 pt-24">
+
+
+        <h1 className="text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6">Tag Library</h1>
+
+        <div className="bg-white rounded-lg shadow-md">
+          {strategies.map((strategy, index) => (
+            <div key={index} className="p-4 border-b last:border-b-0">
+              <div className="text-xl font-bold mb-2">{strategy.tag}</div>
+              <div className="bg-gray-100 p-4 rounded-lg">
+              <div className="text-gray-600">{strategy.behavior}</div>
+              </div>
+            </div>
+          ))}
+
+
+        </div>
+      </div>
+    </div>
+
+  );
+};
+
+export default StudentProfile;
