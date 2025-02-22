@@ -4,18 +4,13 @@ import { useState } from "react";
 export default function StudentProfile() {
 
     const student = {
-        name: "John Doe",
-        id: "12345",
-        grade: "5th Grade",
-        photo: "https://via.placeholder.com/150",
-        tags: ["Reading Support", "Speech Therapy"],
-        strategies: [{ id: 1, name: "Use visual schedules", tags: ["Organization"] }],
-        staff: [
-          { name: "Ms. Smith", role: "Special Ed Teacher", schedule: "MWF 10:00-11:00" },
-          { name: "Mr. Brown", role: "Speech Therapist", schedule: "TTh 9:00-9:30" }
-        ],
-        iepSnapshot: "https://example.com/iep.pdf"
+        Name: "John Doe",
+        studentTags: ["Reading Support", "Speech Therapy"],
+        notedWorkingStrategies: ["fidgets", "lots of breaks"],
+        allEducators: ["Paraprofessional", "Speech Therapist"],
+        uniqueScheduledSupports: ["speech therapy Tuesdays at 2pm", "resource room"]
       };
+
     
       const [strategies, setStrategies] = useState(student.strategies);
       const [newStrategy, setNewStrategy] = useState("");
