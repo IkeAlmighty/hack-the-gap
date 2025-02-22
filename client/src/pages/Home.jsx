@@ -49,7 +49,21 @@ export const HomePage = () => {
             <div>Grade</div>
           </div>
 
-          {students.slice(0, visibleStudents).map((student) => (
+          {/* Render top student's name as a button */}
+          {students.length > 0 && (
+            <div className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b">
+              <button
+                className="text-blue-600 font-bold hover:underline"
+                onClick={() => console.log(`Clicked on ${students[0].Name}`)} // Replace with actual action
+              >
+                {students[0].Name}
+              </button>
+              <div className="font-medium">{students[0].Grade}</div>
+            </div>
+          )}
+
+          {/* Render the remaining students */}
+          {students.slice(1, visibleStudents).map((student) => (
             <div
               key={student.id}
               className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
