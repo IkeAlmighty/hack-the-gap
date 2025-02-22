@@ -3,42 +3,19 @@ import "../data/dummy-data.js"
 import {getCollection} from '../data/dummy-data.js';
 
 export const HomePage = () => {
-  const [students, setStudents] = useState([]);
-  const [strategies, setStrategies] = useState([]);
-  const [visibleStudents, setVisibleStudents] = useState(3);
-  const [visibleStrategies, setVisibleStrategies] = useState(3);
+  const [data, setData] = useState([]);
+
 
 
   useEffect(() => {
     // Fetch or define the students data here
-    const fetchStudents = async () => {
-      // Example data
-      const data = [
-        { id: 1, name: 'John Doe', para: 'Nara Coldwater', issue: 'Reading'},
-        { id: 2, name: 'Jane Smith', para: 'Jarred Vanhorn', issue: 'Focus' },
-        { id: 3, name: 'John Doe', para: 'Nara Coldwater', issue: 'Reading'},
-        { id: 4, name: 'Jane Smith', para: 'Jarred Vanhorn', issue: 'Focus' },
-        { id: 5, name: 'John Doe', para: 'Nara Coldwater', issue: 'Reading'},
-        { id: 6, name: 'Jane Smith', para: 'Jarred Vanhorn', issue: 'Focus' },
-        // Add more students here
-      ];
-      setStudents(data);
-    };
-
-    fetchStudents();
-  }, []);
-
-  useEffect(async () => {
-    // Fetch or define the students data here
-    const fetchStrategies = async () => {
+    const fetchData = async () => {
       // Example data
       const data = await getCollection("strategyTools");
-    console.log(data);
-      
-      setStrategies(data);
+      setData(data);
     };
 
-    fetchStrategies();
+    fetchData();
   }, []);
 
   const showMoreStudents = () => {
@@ -70,7 +47,7 @@ export const HomePage = () => {
           <div>Main Issue</div>
         </div>
 
-        {students.slice(0, visibleStudents).map(student => (
+        {/* {students.slice(0, visibleStudents).map(student => (
           <div
             key={student.id}
             className="grid grid-cols-3 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
@@ -79,12 +56,12 @@ export const HomePage = () => {
             <div className="text-gray-600">{student.para}</div>
             <div className="font-medium">{student.issue}</div>
           </div>
-        ))}
-        {visibleStudents < students.length && (
+        ))} */}
+        {/* {visibleStudents < students.length && (
           <button onClick={showMoreStudents} className="mt-4 text-blue-500">
             See More Students
           </button>
-        )}
+        )} */}
       </div>
 
       <h1 className="text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6">Tag Library</h1>
@@ -95,20 +72,20 @@ export const HomePage = () => {
           <div>Short Description</div>
         </div>
 
-        {strategies.slice(0, visibleStrategies).map(strategy => (
+        {data.map(need => (
           <div
-            key={strategy.tag}
+            key={need.studentTag}
             className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
           >
-            <div>{strategy.tag}</div>
-            <div className="text-gray-600">{strategy.behavior}</div>
+            <div>{need.studentTag}</div>
+            <div className="text-gray-600">{need.studentBehavior}</div>
           </div>
         ))}
 
-        {visibleStrategies < strategies.length && (
+        {/* {visibleStrategies < strategies.length && (
           <button onClick={showMoreStrategies} className="mt-4 text-blue-500">
             See More Strategies
-          </button>
+          </button> */}
         )}
       </div>
       </div>
