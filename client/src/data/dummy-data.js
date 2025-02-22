@@ -10,18 +10,18 @@ const SHEET_ID = "1ik_6TgaKqsNULRVBq_PPTj8VZ3BAck8GqeL1iXgqZsI"; // Replace with
 
 async function populateCollection(collectionName) {
     const sheet_tab_id = tabIds[collectionName];
-    dummyData.collections[collectionName] = {}
+    dummyData.collections[collectionName] = {};
 
     const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${sheet_tab_id}`;
 
     function formatQuotes(value) {
-        // console.log(value);
+        console.log(value);
         let v = value.trim().replace("\"\"", '$$$');
-        // console.log(v);
-        v = v.replace("\"", "");
-        // console.log(v);
+        console.log(v);
+        v = v.replaceAll("\"", "");
+        console.log(v);
         v = v.replace("$$$", "\"")
-        // console.log('final: ', v, "\n\n\n");
+        console.log('final: ', v, "\n\n\n");
         return v;
     }
 
@@ -42,7 +42,7 @@ async function populateCollection(collectionName) {
                         const key = fields[colIndex];
                         let currentDoc = dummyData.collections[collectionName][rowIndex];
                         if (!currentDoc) dummyData.collections[collectionName][rowIndex] = {}
-                        dummyData.collections[collectionName][rowIndex][key] = value;
+                        dummyData.collections[collectionName][rowIndex][key] = formatQuotes(value);
                     }
                 })
             })
@@ -50,13 +50,18 @@ async function populateCollection(collectionName) {
         .catch(error => console.error("Error fetching sheet:", error));
 }
 
-populateCollection("strategyTools").then(() => console.log("strategyTools loaded"));
+populateCollection("strategyTools").then(() => console.log(getCollection("strategyTools")));
 populateCollection("studentAccounts").then(() => console.log("studentAccounts loaded"));
 
+function getCollection(collectionName) {
+    return Object.values(dummyData.collections[collectionName]);
+}
+
+export { getCollection };
 export default dummyData;
 
 /**
  * 
- * dummyData.collections.strategyTools.filter(o => o.studentTags === 'Attention')
+ * getCollection("strategyTools").filter(o => o.studentTags === 'Attention')
  * 
  */
