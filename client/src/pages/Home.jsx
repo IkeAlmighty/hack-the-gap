@@ -53,7 +53,7 @@ export const HomePage = () => {
           {students.length > 0 && (
             <div className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b">
               <button
-                className="text-blue-600 font-bold hover:underline"
+                className="text-blue-500 font-bold hover:underline"
                 onClick={() => console.log(`Clicked on ${students[0].Name}`)} // Replace with actual action
               >
                 {students[0].Name}
