@@ -11,7 +11,7 @@ export default function NavBar() {
 
     const links = [
         { pathname: '/Home', text: "Home" },
-
+        { pathname: '/student-profile', text: "StudentProfile" },
     ]
 
     return (
