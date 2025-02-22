@@ -86,7 +86,7 @@ export const HomePage = () => {
           <button onClick={showMoreStrategies} className="mt-4 text-blue-500">
             See More Strategies
           </button> */}
-        )}
+
       </div>
       </div>
     </div>
