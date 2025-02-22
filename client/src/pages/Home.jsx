@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../data/dummy-data.js"
-import dummyData from '../data/dummy-data.js';
+import {getCollection} from '../data/dummy-data.js';
 
 export const HomePage = () => {
   const [students, setStudents] = useState([]);
@@ -28,19 +28,13 @@ export const HomePage = () => {
     fetchStudents();
   }, []);
 
-  useEffect(() => {
+  useEffect(async () => {
     // Fetch or define the students data here
     const fetchStrategies = async () => {
       // Example data
-      const data = [
-        {tag: "Attention", behavior: "Very active"},
-        {tag: "Reading", behavior: "Struggles identifying letters"},
-        {tag: "Attention2", behavior: "Very active"},
-        {tag: "Reading2", behavior: "Struggles identifying letters"},
-        {tag: "Attention3", behavior: "Very active"},
-        {tag: "Reading3", behavior: "Struggles identifying letters"},
-      ]
-      //dummyData.collections;
+      const data = await getCollection("strategyTools");
+    console.log(data);
+      
       setStrategies(data);
     };
 

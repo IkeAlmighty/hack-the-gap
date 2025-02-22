@@ -50,10 +50,11 @@ async function populateCollection(collectionName) {
         .catch(error => console.error("Error fetching sheet:", error));
 }
 
-populateCollection("strategyTools").then(() => console.log(getCollection("strategyTools")));
-populateCollection("studentAccounts").then(() => console.log("studentAccounts loaded"));
 
-function getCollection(collectionName) {
+async function getCollection(collectionName) {
+    if (dummyData.collections[collectionName]) return Object.values(dummyData.collections[collectionName]);
+    await populateCollection("strategyTools").then(() => console.log(getCollection("strategyTools")));
+    await populateCollection("studentAccounts").then(() => console.log("studentAccounts loaded"));
     return Object.values(dummyData.collections[collectionName]);
 }
 
@@ -62,6 +63,6 @@ export default dummyData;
 
 /**
  * 
- * getCollection("strategyTools").filter(o => o.studentTags === 'Attention')
+ * const data = await getCollection("strategyTools").filter(o => o.studentTags === 'Attention')
  * 
  */
