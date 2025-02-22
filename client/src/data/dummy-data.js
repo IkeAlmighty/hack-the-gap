@@ -50,7 +50,13 @@ async function populateCollection(collectionName) {
         .catch(error => console.error("Error fetching sheet:", error));
 }
 
-populateCollection("strategyTools").then(() => console.log(JSON.stringify(dummyData, null, 3)));
-populateCollection("studentAccounts").then(() => console.log(JSON.stringify(dummyData, null, 3)));
+populateCollection("strategyTools").then(() => console.log("strategyTools loaded"));
+populateCollection("studentAccounts").then(() => console.log("studentAccounts loaded"));
 
 export default dummyData;
+
+/**
+ * 
+ * dummyData.collections.strategyTools.filter(o => o.studentTags === 'Attention')
+ * 
+ */
