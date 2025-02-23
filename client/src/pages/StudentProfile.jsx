@@ -83,10 +83,10 @@ export const StudentProfile = () => {
             <div className="flex space-x-2 ml-2">
               {student.studentTags && student.studentTags.split(",").map(tag => (
                 <span key={tag} className="bg-gray-200 px-2 py-1 rounded">
-                  <NavLink to="/tags">
-                  
-                  {tag} 
-                 
+                  <NavLink to="/tags/Attention">
+
+                  {tag}
+
                   </NavLink>
                 </span>
               ))}
@@ -123,9 +123,9 @@ export const StudentProfile = () => {
             key={need.studentTag}
             className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
           >
-            
+
             <div>
-            <NavLink to="/tags">
+            <NavLink to="/tags/Attention">
                 {need.studentTag}
                 </NavLink>
             </div>
