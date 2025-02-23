@@ -11,6 +11,8 @@ export default function TagInfo() {
     const keys = keyData.split("\t")
     const { studentTag } = useParams();
 
+
+
     useEffect(() => {
         // Fetch or define the students data here
         const fetchTagData = () => {
@@ -19,6 +21,7 @@ export default function TagInfo() {
 
         fetchTagData();
     }, []);
+
 
 
     return (
@@ -38,7 +41,10 @@ export default function TagInfo() {
                     <div key={index} className="max-w-4xl mx-auto p-6 pt-10">
                         {key !== "studentTag" ?
                             <div>
-                                <h1 className="text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6">{decamelCase(key)}</h1>
+                                <div className = "text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6 flex items-center justify-between">
+                                <h1 >{decamelCase(key)}</h1>
+                                <button className="text-white px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 ml-auto">+</button>
+                                </div>
                                 <div className="bg-white rounded-lg shadow-md p-2">
                                     {tagData[index]}
                                 </div>
