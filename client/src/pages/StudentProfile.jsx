@@ -3,7 +3,7 @@ import "../data/dummy-data.js"
 import dummyData, { getCollection } from '../data/dummy-data.js';
 
 export const StudentProfile = () => {
-  const [student, setStudent] = useState({ name: '', grade: '', teachers:[], tags: ["None"] });
+  const [student, setStudent] = useState({ name: '', grade: '', teachers: [], tags: ["None"] });
   const [strategies, setStrategies] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newTag, setNewTag] = useState('');
@@ -14,7 +14,7 @@ export const StudentProfile = () => {
     // Fetch or define the students data here
     const fetchStudentData = async () => {
       // Example data
-      const filteredData = {Name: "Zoe Martinez", Grade: "2nd Grade", studentTags: "Attention,Sensory-Seeking,Task Avoidance", allEducators: "Benjamin Rhodes,Isabella Monroe,Lauren McKinley"};
+      const filteredData = { Name: "Zoe Martinez", Grade: "2nd Grade", studentTags: "Attention,Sensory-Seeking,Task Avoidance", allEducators: "Benjamin Rhodes,Isabella Monroe,Lauren McKinley" };
       setStudent(filteredData);
 
     };
@@ -26,8 +26,8 @@ export const StudentProfile = () => {
     // Fetch or define the students data here
     const fetchStrategies = async () => {
       // Example data
-      const filteredStrategies = [{studentTag: "Attention", studentBehavior: "Students may have difficulty staying focused, get easily distracted, or struggle to follow multi-step instructions"},{studentTag: "Task Avoidance", studentBehavior: "Students who procrastinate or avoid challenging activities"},{studentTag: "Sensory-Seeking", studentBehavior: "Students who actively seek out sensory stimulation, like constantly touching objects, spinning, loud vocalizations"},];
-        setStrategies(filteredStrategies);
+      const filteredStrategies = [{ studentTag: "Attention", studentBehavior: "Students may have difficulty staying focused, get easily distracted, or struggle to follow multi-step instructions" }, { studentTag: "Task Avoidance", studentBehavior: "Students who procrastinate or avoid challenging activities" }, { studentTag: "Sensory-Seeking", studentBehavior: "Students who actively seek out sensory stimulation, like constantly touching objects, spinning, loud vocalizations" },];
+      setStrategies(filteredStrategies);
 
 
     };
@@ -39,8 +39,8 @@ export const StudentProfile = () => {
     // Fetch or define the students data here
     const fetchStrats = async () => {
       // Example data
-      const filteredStrategies = [{studentTag: "Attention", studentBehavior: "Provide structured routines"},{studentTag: "Attention, Task Avoidance", studentBehavior: "Seat student near the front"},{studentTag: "Attention, Sensory-Seeking", studentBehavior: "Reduce visual distractions."},];
-        setStrats(filteredStrategies);
+      const filteredStrategies = [{ studentTag: "Attention", studentBehavior: "Provide structured routines" }, { studentTag: "Attention, Task Avoidance", studentBehavior: "Seat student near the front" }, { studentTag: "Attention, Sensory-Seeking", studentBehavior: "Reduce visual distractions." },];
+      setStrats(filteredStrategies);
 
 
     };
@@ -58,7 +58,7 @@ export const StudentProfile = () => {
     setNewBehavior('');
   };
 
-  const handleSaveStrategy = () =>{
+  const handleSaveStrategy = () => {
     const newStrategy = {
       studentTag: newTag,
       studentBehavior: newBehavior,
@@ -103,44 +103,44 @@ export const StudentProfile = () => {
       </div>
       <div className="max-w-4xl mx-auto p-6 pt-24">
 
-        <div className = "text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6 flex items-center justify-between">
+        <div className="text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6 flex items-center justify-between">
           <h1>Tag Library</h1>
           <button onClick={handleAddStrategy} className="text-white px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 ml-auto">+</button>
         </div>
 
 
         <div className="bg-white rounded-lg shadow-md">
-        {strategies.map(need => (
-          <div
-            key={need.studentTag}
-            className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
-          >
-            <div>{need.studentTag}</div>
-            <div className="text-gray-600">{need.studentBehavior}</div>
-          </div>
-        ))}
+          {strategies.map(need => (
+            <div
+              key={need.studentTag}
+              className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
+            >
+              <div>{need.studentTag}</div>
+              <div className="text-gray-600">{need.studentBehavior}</div>
+            </div>
+          ))}
 
 
         </div>
       </div>
       <div className="max-w-4xl mx-auto p-6 pt-24">
 
-        <div className = "text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6 flex items-center justify-between">
+        <div className="text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6 flex items-center justify-between">
           <h1>Strategy Library</h1>
           <button onClick={handleAddStrategy} className="text-white px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 ml-auto">+</button>
         </div>
 
 
         <div className="bg-white rounded-lg shadow-md">
-        {strats.map(need => (
-          <div
-            key={need.studentTag}
-            className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
-          >
-            <div>{need.studentTag}</div>
-            <div className="text-gray-600">{need.studentBehavior}</div>
-          </div>
-        ))}
+          {strats.map(need => (
+            <div
+              key={need.studentTag}
+              className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
+            >
+              <div>{need.studentTag}</div>
+              <div className="text-gray-600">{need.studentBehavior}</div>
+            </div>
+          ))}
 
 
         </div>
@@ -151,11 +151,11 @@ export const StudentProfile = () => {
             <h2 className="text-2xl font-bold mb-4">Add New Strategy</h2>
             <div className="mb-4">
               <label className="block text-gray-700">Tag</label>
-              <input type="text" className="w-full px-3 py-2 border rounded" value = {newTag}  onChange={(e) => setNewTag(e.target.value)}/>
+              <input type="text" className="w-full px-3 py-2 border rounded" value={newTag} onChange={(e) => setNewTag(e.target.value)} />
             </div>
             <div className="mb-4">
               <label className="block text-gray-700">Behavior</label>
-              <textarea className="w-full px-3 py-2 border rounded" value = {newBehavior} onChange={(e) => setNewBehavior(e.target.value)}></textarea>
+              <textarea className="w-full px-3 py-2 border rounded" value={newBehavior} onChange={(e) => setNewBehavior(e.target.value)}></textarea>
             </div>
             <div className="flex justify-end">
               <button onClick={handleCloseModal} className="text-gray-700 px-4 py-2 mr-2">Cancel</button>
