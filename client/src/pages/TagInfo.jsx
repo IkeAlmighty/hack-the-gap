@@ -33,7 +33,9 @@ export default function TagInfo() {
                 </div>
                 <div>
                     <button className="text-white mr-4 px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Profile</button>
-                    <button className="text-white px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Settings</button>
+                    <NavLink to="/Home">
+                              <button className="text-white px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Home</button>
+                    </NavLink>
                 </div>
             </div>
             {keys.map((key, index) => {
