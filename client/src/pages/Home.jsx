@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../data/dummy-data.js";
 import { getCollection } from '../data/dummy-data.js';
+import { NavLink } from 'react-router';
 
 export const HomePage = () => {
   const [data, setData] = useState([]);
@@ -50,26 +51,15 @@ export const HomePage = () => {
           </div>
 
           {/* Render top student's name as a button */}
-          {students.length > 0 && (
+          {students.map((student) => (
             <div className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b">
-              <button
-                className="text-blue-500 font-bold hover:underline"
-                onClick={() => console.log(`Clicked on ${students[0].Name}`)} // Replace with actual action
-              >
-                {students[0].Name}
-              </button>
+                <NavLink to="/student-profile">
+                    <button
+                    className="text-grey-600  hover:underline">
+                    {student.Name}
+                    </button>
+                </NavLink>
               <div className="font-medium">{students[0].Grade}</div>
-            </div>
-          )}
-
-          {/* Render the remaining students */}
-          {students.slice(1, visibleStudents).map((student) => (
-            <div
-              key={student.id}
-              className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
-            >
-              <div className="text-gray-600">{student.Name}</div>
-              <div className="font-medium">{student.Grade}</div>
             </div>
           ))}
 
@@ -88,13 +78,17 @@ export const HomePage = () => {
             <div>Short Description</div>
           </div>
 
-          {data.slice(0, visibleStrategies).map((need) => (
+          {data.map((need) => (
             <div
               key={need.studentTag}
               className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
             >
-              <div>{need.studentTag}</div>
-              <div className="text-gray-600">{need.studentBehavior}</div>
+              <div>
+                <NavLink to={`/tags/${need.studentTag}`}>
+                {need.studentTag}
+                </NavLink>
+                </div>
+              <div className="text-grey-600">{need.studentBehavior}</div>
             </div>
           ))}
 
