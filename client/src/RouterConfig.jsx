@@ -8,7 +8,7 @@ export default function RouterConfig() {
         <Routes>
             <Route index element={<Home />} />
             <Route path="/student-profile" element={<StudentProfile />} />
-            <Route path="/tags" element={<TagInfo />} />
+            <Route path="/tags/Attention" element={<TagInfo />} />
             <Route path="/home" element={<Home />} />
         </Routes>
     );

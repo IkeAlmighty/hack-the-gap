@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { decamelCase } from '../utils/prettify';
-
+import { NavLink } from "react-router";
 import { useParams } from 'react-router';
 
 export default function TagInfo() {
