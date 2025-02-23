@@ -5,6 +5,9 @@ import dummyData, { getCollection } from '../data/dummy-data.js';
 export const StudentProfile = () => {
   const [student, setStudent] = useState({ name: '', grade: '', teachers:[], tags: ["None"] });
   const [strategies, setStrategies] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newTag, setNewTag] = useState('');
+  const [newBehavior, setNewBehavior] = useState('');
 
 
   useEffect(() => {
@@ -32,6 +35,26 @@ export const StudentProfile = () => {
     fetchStrategies();
   }, []);
 
+  const handleAddStrategy = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setNewTag('');
+    setNewBehavior('');
+  };
+
+  const handleSaveStrategy = () =>{
+    const newStrategy = {
+      studentTag: newTag,
+      studentBehavior: newBehavior,
+    };
+    setStrategies([...strategies, newStrategy]);
+    setNewTag('');
+    setNewBehavior('');
+    setIsModalOpen(false);
+  }
 
   return (
 
@@ -67,8 +90,11 @@ export const StudentProfile = () => {
       </div>
       <div className="max-w-4xl mx-auto p-6 pt-24">
 
+        <div className = "text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6 flex items-center justify-between">
+          <h1>Tag Library</h1>
+          <button onClick={handleAddStrategy} className="text-white px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 ml-auto">+</button>
+        </div>
 
-        <h1 className="text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6">Tag Library</h1>
 
         <div className="bg-white rounded-lg shadow-md">
         {strategies.map(need => (
@@ -84,6 +110,25 @@ export const StudentProfile = () => {
 
         </div>
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-2xl font-bold mb-4">Add New Strategy</h2>
+            <div className="mb-4">
+              <label className="block text-gray-700">Tag</label>
+              <input type="text" className="w-full px-3 py-2 border rounded" value = {newTag}  onChange={(e) => setNewTag(e.target.value)}/>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700">Behavior</label>
+              <textarea className="w-full px-3 py-2 border rounded" value = {newBehavior} onChange={(e) => setNewBehavior(e.target.value)}></textarea>
+            </div>
+            <div className="flex justify-end">
+              <button onClick={handleCloseModal} className="text-gray-700 px-4 py-2 mr-2">Cancel</button>
+              <button onClick={handleSaveStrategy} className="text-white px-4 py-2 bg-blue-500 rounded">Save</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
 
   );
