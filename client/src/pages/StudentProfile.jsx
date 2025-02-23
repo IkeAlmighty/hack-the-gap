@@ -8,7 +8,7 @@ export const StudentProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newTag, setNewTag] = useState('');
   const [newBehavior, setNewBehavior] = useState('');
-
+  const [strats, setStrats] = useState([]);
 
   useEffect(() => {
     // Fetch or define the students data here
@@ -33,6 +33,19 @@ export const StudentProfile = () => {
     };
 
     fetchStrategies();
+  }, []);
+
+  useEffect(() => {
+    // Fetch or define the students data here
+    const fetchStrats = async () => {
+      // Example data
+      const filteredStrategies = [{studentTag: "Attention", studentBehavior: "Provide structured routines"},{studentTag: "Attention, Task Avoidance", studentBehavior: "Seat student near the front"},{studentTag: "Attention, Sensory-Seeking", studentBehavior: "Reduce visual distractions."},];
+        setStrats(filteredStrategies);
+
+
+    };
+
+    fetchStrats();
   }, []);
 
   const handleAddStrategy = () => {
@@ -98,6 +111,28 @@ export const StudentProfile = () => {
 
         <div className="bg-white rounded-lg shadow-md">
         {strategies.map(need => (
+          <div
+            key={need.studentTag}
+            className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
+          >
+            <div>{need.studentTag}</div>
+            <div className="text-gray-600">{need.studentBehavior}</div>
+          </div>
+        ))}
+
+
+        </div>
+      </div>
+      <div className="max-w-4xl mx-auto p-6 pt-24">
+
+        <div className = "text-3xl px-4 py-2 bg-gray-300 rounded font-bold mb-6 flex items-center justify-between">
+          <h1>Strategy Library</h1>
+          <button onClick={handleAddStrategy} className="text-white px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 ml-auto">+</button>
+        </div>
+
+
+        <div className="bg-white rounded-lg shadow-md">
+        {strats.map(need => (
           <div
             key={need.studentTag}
             className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b last:border-b-0"
