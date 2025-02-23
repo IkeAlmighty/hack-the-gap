@@ -11,10 +11,9 @@ export const StudentProfile = () => {
     // Fetch or define the students data here
     const fetchStudentData = async () => {
       // Example data
-      const data = await getCollection("studentAccounts")
-
-      const filteredData = data.filter(o => o.Name === 'Zoe Martinez');
+      const filteredData = {Name: "Zoe Martinez", Grade: "2nd Grade", studentTags: "Attention,Sensory-Seeking,Task Avoidance", allEducators: "Benjamin Rhodes,Isabella Monroe,Lauren McKinley"};
       setStudent(filteredData);
+
     };
 
     fetchStudentData();
@@ -24,13 +23,9 @@ export const StudentProfile = () => {
     // Fetch or define the students data here
     const fetchStrategies = async () => {
       // Example data
-      if(student.studentTags.length > 0){
-        const strategiesData = await getCollection("strategyTools");
-        const filteredStrategies = strategiesData.filter(strategy =>
-          student.studentTags.includes(strategy.studentTag)
-        );
+      const filteredStrategies = [{studentTag: "Attention", studentBehavior: "Students may have difficulty staying focused, get easily distracted, or struggle to follow multi-step instructions"},{studentTag: "Task Avoidance", studentBehavior: "Students who procrastinate or avoid challenging activities"},{studentTag: "Sensory-Seeking", studentBehavior: "Students who actively seek out sensory stimulation, like constantly touching objects, spinning, loud vocalizations"},];
         setStrategies(filteredStrategies);
-      }
+
 
     };
 
@@ -45,8 +40,8 @@ export const StudentProfile = () => {
       <div className="bg-gray-100 text-black p-10 flex justify-between items-center mb-8 w-full fixed top-0 left-0">
         <div className="flex items-center space-x-6">
           <div className="text-4xl font-bold border-r-2 pr-4">{student.Name}</div>
-          <div className="text-xl">Grade: {student.Grade}</div>
-          <div className="text-xl flex items-center">
+          <div className="text-l">Grade: {student.Grade}</div>
+          <div className="text-l flex items-center">
             <span>Needs: </span>
             <div className="flex space-x-2 ml-2">
               {student.studentTags && student.studentTags.split(",").map(tag => (
@@ -57,8 +52,8 @@ export const StudentProfile = () => {
             </div>
             <span className="ml-4">Teachers: </span>
             <div className="flex space-x-2 ml-2">
-              {student.teachers && student.allEducators.split(",").map((teacher, index) => (
-                <span key={index} className="bg-gray-200 px-2 py-1 rounded">
+              {student.allEducators && student.allEducators.split(",").map((teacher, index) => (
+                <span key={index} className="bg-gray-200 px-2 py-1 rounded max-w-20">
                   {teacher}
                 </span>
               ))}
