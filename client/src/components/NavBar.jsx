@@ -21,7 +21,8 @@ export default function NavBar() {
                     <li>
                         {links.map(linkData => {
                             return (
-                                <NavLink to={linkData.pathname}
+                                <NavLink key={linkData.pathname}
+                                    to={linkData.pathname}
                                     onClick={() => setPage(linkData.pathname)}
                                     className={`${classNames.NavLink} ${page === linkData.pathname ? 'bg-jasmine rounded border-b-2' : ''}`}>
                                     {linkData.text}

@@ -15,13 +15,13 @@ async function populateCollection(collectionName) {
     const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${sheet_tab_id}`;
 
     function formatQuotes(value) {
-        console.log(value);
+        // console.log(value);
         let v = value.trim().replace("\"\"", '$$$');
-        console.log(v);
+        // console.log(v);
         v = v.replaceAll("\"", "");
-        console.log(v);
+        // console.log(v);
         v = v.replace("$$$", "\"")
-        console.log('final: ', v, "\n\n\n");
+        // console.log('final: ', v, "\n\n\n");
         return v;
     }
 
@@ -53,7 +53,7 @@ async function populateCollection(collectionName) {
 
 async function getCollection(collectionName) {
     if (dummyData.collections[collectionName]) return Object.values(dummyData.collections[collectionName]);
-    await populateCollection("strategyTools").then(() => console.log(getCollection("strategyTools")));
+    await populateCollection("strategyTools").then(() => console.log("strategyTools loaded"));
     await populateCollection("studentAccounts").then(() => console.log("studentAccounts loaded"));
     return Object.values(dummyData.collections[collectionName]);
 }
