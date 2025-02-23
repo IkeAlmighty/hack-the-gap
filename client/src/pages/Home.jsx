@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import "../data/dummy-data.js";
 import { getCollection } from '../data/dummy-data.js';
 import { NavLink } from 'react-router';
+import BrowserIcon from '../assets/BrowserIcon.svg'
+import Logo from '../assets/Logo.svg'
+import Icon from '../components/Icon.jsx'
 
 export const HomePage = () => {
   const [data, setData] = useState([]);
@@ -33,11 +36,21 @@ export const HomePage = () => {
   return (
     <div className="w-full">
       {/* Navigation Bar */}
-      <div className="bg-gray-100 text-black p-10 flex justify-between items-center mb-8 w-full fixed top-0 left-0">
-        <div className="text-4xl font-bold">IEP Organizer</div>
+      <div className="bg-gray-100 text-black flex justify-between items-center mb-8 p-1 w-full fixed top-0 left-0">
+        <div style={{ width: "150px" }}><Icon src={BrowserIcon} /> <span className=""></span></div>
+        <div style={{
+          width: "300px",
+          height: "150px",
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center", // Vertically centers the content
+          justifyContent: "center" // Centers horizontally (optional)
+        }}>
+          <Icon src={Logo} />
+        </div>
         <div>
-          <button className="text-white mr-4 px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Profile</button>
-          <button className="text-white px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Settings</button>
+          <button className="w-[150px] mb-1 block text-white mr-4 px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Profile</button>
+          <button className="w-[150px] block text-white px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Settings</button>
         </div>
       </div>
 
@@ -53,12 +66,12 @@ export const HomePage = () => {
           {/* Render top student's name as a button */}
           {students.map((student) => (
             <div className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50 border-b">
-                <NavLink to="/student-profile">
-                    <button
-                    className="text-grey-600  hover:underline">
-                    {student.Name}
-                    </button>
-                </NavLink>
+              <NavLink to="/student-profile">
+                <button
+                  className="text-grey-600  hover:underline">
+                  {student.Name}
+                </button>
+              </NavLink>
               <div className="font-medium">{students[0].Grade}</div>
             </div>
           ))}
@@ -85,9 +98,9 @@ export const HomePage = () => {
             >
               <div>
                 <NavLink to={`/tags/${need.studentTag}`}>
-                {need.studentTag}
+                  {need.studentTag}
                 </NavLink>
-                </div>
+              </div>
               <div className="text-grey-600">{need.studentBehavior}</div>
             </div>
           ))}
